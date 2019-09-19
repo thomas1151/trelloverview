@@ -1,0 +1,82 @@
+//out: ../css/App.css
+html, body, #root{
+  min-height: 100%;
+  background: #f7fafc;
+
+}
+body{
+  height: 100vh;
+}
+#root{
+  height: 100%;
+  overflow: hidden;
+}
+.App {
+  text-align: center;
+
+}
+*{
+  box-sizing: border-box;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  pointer-events: none;
+}
+
+.App-header {
+  background-color: #282c34;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.deg45{
+  transform: rotate(45deg);
+}
+
+
+.lds-dual-ring {
+  display: inline-block;
+  width: 5vw;
+  height: 7vw;
+  margin: 0 auto;
+  display: block;
+  padding: 1em;
+}
+.lds-dual-ring:after {
+  content: " ";
+  display: block;
+  width: 4vw;
+  height: 4vw;
+  margin: 1px;
+  border-radius: 50%;
+  border: 7px solid #3A86B7;
+  border-color: #3A86B7 transparent #3A86B7 transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
