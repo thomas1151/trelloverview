@@ -9,17 +9,18 @@ const renderHeaderFn = (stages,  stage, setStage, stageAsTitle, logOut, restart)
                     <button className="text-white border-white hover:bg-blue-700 font-semibold py-1 px-4 border hover:border-blue-500 hover:border-transparent rounded mx-2 my-1"
                         onClick={() => logOut()}>
                         Logout
-              </button>
+                    </button>
 
                     <button className="text-white border-white hover:bg-blue-700 font-semibold py-1 px-4 border hover:border-blue-500 hover:border-transparent rounded mx-2 my-1"
                         onClick={() => restart()}>
                         Restart
-              </button>
-
-                    <button className="text-white border-white hover:bg-blue-700  font-semibold py-1 px-4 border hover:border-blue-500 hover:border-transparent rounded mx-2 my-1"
-                        onClick={() => (setStage(stages[stages.indexOf(stage) - 1]))}>
-                        Back
-              </button>
+                    </button>
+                    {stages.indexOf(stage) > 1  &&
+                        <button className="text-white border-white hover:bg-blue-700  font-semibold py-1 px-4 border hover:border-blue-500 hover:border-transparent rounded mx-2 my-1"
+                            onClick={() => (setStage(stages[stages.indexOf(stage) - 1]))}>
+                            Back
+                        </button>
+                    }
                 </div>
             }
         </div>

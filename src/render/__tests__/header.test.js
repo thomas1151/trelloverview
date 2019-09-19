@@ -31,9 +31,22 @@ describe('Header Rendering function', () => {
         expect(shallowToJson(shallow(renderHeaderFn(stages, stage, setStage, stageAsTitle, logOut, restart)))).toMatchSnapshot();
     });
 
-    it("renders with a valid stage which is not the initial stage", () => {
+    it("renders with a valid second stage", () => {
         let card = { labels: [], color: '000000' }
-        let stages = ['testInitialStage', 'testStage'];
+        let stages = ['testInitialStage', 'secondaryStage', 'testStage'];
+        let stage = 'secondaryStage';
+        let stageAsTitle = '';
+        let setStage = '';
+        let logOut = '';
+        let restart = '';
+        expect(shallowToJson(shallow(renderHeaderFn(stages, stage, setStage, stageAsTitle, logOut, restart)))).toMatchSnapshot();
+    });
+
+
+
+    it("renders with a valid stage which is not the initial or secondary stage", () => {
+        let card = { labels: [], color: '000000' }
+        let stages = ['testInitialStage', 'secondaryStage', 'testStage'];
         let stage = 'testStage';
         let stageAsTitle = ''; 
         let setStage = '';

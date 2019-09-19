@@ -1,5 +1,35 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Header Rendering function renders with a valid second stage 1`] = `
+<header
+  className="bg-blue-500 px-4 flex w-full"
+>
+  <h1
+    className="text-lg font-bold text-left text-white flex-1 self-center"
+  />
+  <div
+    className="flex flex-wrap  px-2"
+  >
+    <div
+      className="button-wrap"
+    >
+      <button
+        className="text-white border-white hover:bg-blue-700 font-semibold py-1 px-4 border hover:border-blue-500 hover:border-transparent rounded mx-2 my-1"
+        onClick={[Function]}
+      >
+        Logout
+      </button>
+      <button
+        className="text-white border-white hover:bg-blue-700 font-semibold py-1 px-4 border hover:border-blue-500 hover:border-transparent rounded mx-2 my-1"
+        onClick={[Function]}
+      >
+        Restart
+      </button>
+    </div>
+  </div>
+</header>
+`;
+
 exports[`Header Rendering function renders with a valid stage which is initial stage 1`] = `
 <header
   className="bg-blue-500 px-4 flex w-full"
@@ -10,6 +40,42 @@ exports[`Header Rendering function renders with a valid stage which is initial s
   <div
     className="flex flex-wrap  px-2"
   />
+</header>
+`;
+
+exports[`Header Rendering function renders with a valid stage which is not the initial or secondary stage 1`] = `
+<header
+  className="bg-blue-500 px-4 flex w-full"
+>
+  <h1
+    className="text-lg font-bold text-left text-white flex-1 self-center"
+  />
+  <div
+    className="flex flex-wrap  px-2"
+  >
+    <div
+      className="button-wrap"
+    >
+      <button
+        className="text-white border-white hover:bg-blue-700 font-semibold py-1 px-4 border hover:border-blue-500 hover:border-transparent rounded mx-2 my-1"
+        onClick={[Function]}
+      >
+        Logout
+      </button>
+      <button
+        className="text-white border-white hover:bg-blue-700 font-semibold py-1 px-4 border hover:border-blue-500 hover:border-transparent rounded mx-2 my-1"
+        onClick={[Function]}
+      >
+        Restart
+      </button>
+      <button
+        className="text-white border-white hover:bg-blue-700  font-semibold py-1 px-4 border hover:border-blue-500 hover:border-transparent rounded mx-2 my-1"
+        onClick={[Function]}
+      >
+        Back
+      </button>
+    </div>
+  </div>
 </header>
 `;
 
