@@ -1,4 +1,6 @@
 // browser mocks
+
+//found at:https://github.com/facebook/jest/issues/2098#issuecomment-260733457
 const localStorageMock = (function () {
     let store = {}
     return {
