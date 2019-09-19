@@ -2,7 +2,7 @@ import { useState } from "react";
 
 
 export default function useSelectedItemToggle(item) {
-    const [selectedItem, setSelectedItem] = useState(item || '');
+    const [selectedItem, setSelectedItem] = useState(item || null);
     const isSelected = (el) => (selectedItem === el)
 
     const toggleSelectedItem = (el) => {

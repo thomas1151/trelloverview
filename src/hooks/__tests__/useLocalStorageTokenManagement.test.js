@@ -26,7 +26,6 @@ describe('useLocalStorageTokenManagement hook', () => {
         act( () => {
             useLocalStorageTokenManagementHook.result.current.stash(testKey)
         })
-
         expect(localStorage.getItem("trelloToken")).toEqual(testKey);
     })
 
@@ -53,7 +52,6 @@ describe('useLocalStorageTokenManagement hook', () => {
         act(() => {
             useLocalStorageTokenManagementHook.result.current.revoke(cleanUpFns)
         })
-
         expect(localStorage.getItem("trelloToken")).toEqual(null);
     })
 })
