@@ -11,7 +11,6 @@ describe('useCustomMapData hook', () => {
     const mapFn = (arr) => arr;
     const renderFn = (x) => <div>{x.id}</div>
     let data;
-
     beforeEach( () => {
         data = [
             { id: 1 },

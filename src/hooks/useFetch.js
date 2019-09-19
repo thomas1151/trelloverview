@@ -26,7 +26,7 @@ export default function useFetch(url, depends) {
             setData(data);
             setIsLoading(false);
         } catch (error) {
-            setError(error.toString());
+            setError(error);
             setIsLoading(false);
 
         }
@@ -39,7 +39,7 @@ export default function useFetch(url, depends) {
         if (url) {
             getData();
         } else {
-            setError('WARN: No URL Passed');
+            setError( Error('WARN: No URL Passed'));
         }
     }, depends)
 
