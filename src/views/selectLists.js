@@ -45,7 +45,7 @@ function SelectLists(props) {
         if (cP){ 
             // console.log(cP);
             // console.log(el);
-            let r = cP.lists.findIndex((e) => (el.id === e.id)); 
+            let r = cP.lists ? cP.lists.findIndex((e) => (el.id === e.id)) : false; 
             // console.log(r, el);
             return r;
 

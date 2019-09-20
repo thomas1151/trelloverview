@@ -17,6 +17,8 @@ function ListItem(props, callbacks={onClick: [], onSelected:[]}) {
 
     //Give ListItems a selected state.
     const [isSelected, setIsSelected] = useState(props.isSelected ? props.isSelected : false);
+
+    //This is never used and can be expensive. Maybe remove?
     let fetchedData = useFetch(props.fetchUrl);
 
     /**
@@ -53,7 +55,6 @@ function ListItem(props, callbacks={onClick: [], onSelected:[]}) {
      * @param {*} event 
      */
     function onClick(event){
-
         //We haven't changed the selectedState yet and we can't reliably check it after we've changed it
         //due to the async nature, so we just check to see if it isn't selected yet, and then fire the
         //isSelected logic.
