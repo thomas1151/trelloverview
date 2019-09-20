@@ -8,7 +8,7 @@ import { useState, useEffect } from "react";
  * This is useful if you're using it with other hooks that just always loop.
  * @param {string} url the url we're fetching from.
  */
-export default function useFetch(url, depends) {
+export default function useFetch(url, depends = []) {
 
     const [data, setData] = useState([]);
     const [isLoading, setIsLoading] = useState(false);

@@ -31,6 +31,7 @@ export default function useFetchList(obj = [], sourceFn = defaultSourceFn, outpu
     const [data, setData] = useState(obj);
     async function getData() {
         setIsLoading(true);
+        setData([]);
         await Promise.all(
 
             obj.map(async x => {

@@ -44,6 +44,21 @@ describe('useFetch hook', () => {
         await expect(useFetchHook.result.current.data).toHaveLength(result.length)
     })
 
+    it('url results in fetch and no error given no depends', async () => {
+        // data = []
+        fetch.mockResponse(JSON.stringify(result))
+
+        await act(async () => {
+            useFetchHook = renderHook(() =>
+                useFetch(url)
+            )
+        }
+        )
+        await expect(useFetchHook.result.current.data).toHaveLength(result.length)
+    })
+
+
+
     it('catches any errors from fetch', async () => {
         // data = []
         let e = Error("500");
