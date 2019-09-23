@@ -32,9 +32,13 @@ function App() {
    */
   const [potsCleaned, setPotsCleaned] = useState(false);
   
+  /**
+   * This removes any lists that may still be kicking around despite not being selected anymore.
+   * Getting rid of these means that if the user was to select the list again, the config wouldn't magically reappear,
+   * and that the overview display wouldn't try and show dead lists.
+   */
   const potsCleanup = () => {
     if (activePots){
-      console.log("Scrubbing those pots");
       let r = activePots.map(pot => {
         pot.lists = cleanUpByCompare(selectedBoards, pot.lists, 'id', 'idBoard');
         return pot;
@@ -67,7 +71,7 @@ function App() {
 
 
   //cleanUpPots();
-  const {stash, revoke, isStashed, token, key} = useLocalStorageTokenManagement();
+  const {stash, revoke, isStashed, token, key, setKey} = useLocalStorageTokenManagement();
   
   //Gets a list of all the boards the user has access to, based on the generated key and token.
   let fetchData = useFetch('https://api.trello.com/1/members/me/boards?key=' + key + '&token=' + token, [token]);
@@ -93,8 +97,6 @@ function App() {
         break;
     }
   }, [stage])
-
-
 
   //Let us just use the slug to generate a title.
   let stageAsTitle = stage.replace(/([A-Z])/g, " $1")
@@ -144,7 +146,7 @@ function App() {
       {renderHeaderFn(stages, stage, setStage, stageAsTitle, logOut, restart)}
 
       {stage === 'addTrelloDetails' &&
-        <Login token={token} stash={stash} fetchData={fetchData} handleProgressStage={handleProgressStage} />
+        <Login ApiKey={key} ApiToken={token} stash={stash} fetchData={fetchData} handleProgressStage={handleProgressStage} setKey={setKey} />
       }
       
       {stage === 'selectBoard' &&

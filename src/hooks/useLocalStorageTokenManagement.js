@@ -16,13 +16,19 @@ require('dotenv').config();
  */
 export default function useLocalStorageTokenManagement() {
 
-    const [key] = useState(localStorage.getItem('trelloKey') || process.env.REACT_APP_API_KEY);
+    const [key, setKey] = useState(localStorage.getItem('trelloKey') || process.env.REACT_APP_API_KEY);
     const [token, setToken] = useState(localStorage.getItem('trelloToken'));
 
     useEffect(() => {
         token ?
             localStorage.setItem('trelloToken', token) : localStorage.removeItem('trelloToken')
     }, [token])
+
+    useEffect(() => {
+        key ?
+            localStorage.setItem('trelloKey', key) : setKey(process.env.REACT_APP_API_KEY);
+    }, [key])
+
 
     /**
      * Remove token from state, therefore localStorage. 
@@ -49,5 +55,5 @@ export default function useLocalStorageTokenManagement() {
      */
     const isStashed = (Boolean(token))
 
-    return { stash, revoke, isStashed, token, key }
+    return { stash, revoke, isStashed, token, key, setKey }
 }

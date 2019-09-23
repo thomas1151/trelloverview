@@ -1,6 +1,34 @@
 import React from 'react';
-import { useState, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
+import RenderModal from '../render/renderModal';
+import useLocalStorageManagedState from '../hooks/useLocalStorageManagedState';
 
+
+const RenderBoardSettings = (props) => (
+    <div className="text-left">
+        <div className="text-lg text-gray-700 font-bold pb-4 flex">
+            <h2 className="flex-1">Edit overview  settings </h2>
+            <button onClick={props.close} className={"align-right font-light px-2 rounded border-gray-100 deg45 font-bold text-xl select-none"}>+</button>
+        </div>
+        <div className="flex-1">
+            <label  className="w-full self-center pt-4 text-left text-gray-500 font-bold"
+                    for="updateInterval">Update Interval</label>
+            <input
+                className="flex-1 max-w-full bg-white focus:outline-none border border-gray-300 rounded-lg py-2 px-4 leading-normal" 
+                type="number" 
+                name="updateInterval"
+                defaultValue={props.updateInterval / 1000}  ref={props.inputRef}
+                min="15000" step="15000"
+                />s
+        </div>
+
+        <button 
+            className="hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-2 border border-blue-500 hover:border-transparent rounded my-4"
+            type="button" onClick={(e) => { e.preventDefault(); props.setUpdateInterval(props.inputRef.current.value * 1000); props.close(); }}>
+            Save
+        </button>
+    </div>
+)
 /**
  * Board logic. 
  * @param {*} props 
@@ -11,6 +39,11 @@ function Board(props) {
     const [error, setError] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [toLoad, setToLoad] = useState(true);
+    const [showSettings, setShowSettings] = useState(false);
+    const { stash: stashUpdateInterval, remove: removeUpdateInterval, isStashed: isUpdateIntervalStashed, data: updateInterval } = useLocalStorageManagedState('trelloUpdateInterval', 60000);
+    const updateIntervalRef = useRef(null);
+
+    
     const getData = () => {
 
 
@@ -69,14 +102,14 @@ function Board(props) {
      */
     useEffect(() => {
         
-        let toLoadInterval = !isLoading && setInterval(() => setToLoad(true), 10000)
+        let toLoadInterval = !isLoading && setInterval(() => setToLoad(true), updateInterval)
 
         // this will clear Timeout when component unmont like in willComponentUnmount
         return () => {
             clearInterval(toLoadInterval)
         }
         
-    }, [toLoad]);
+    }, [toLoad, updateInterval]);
 
     useEffect(() => {
         if(toLoad){
@@ -136,7 +169,11 @@ function Board(props) {
      */
     return (
         <React.Fragment>
+            <div className="absolute bottom-0 right-0 text-xl select-none" onClick={ () => setShowSettings(!showSettings)}>
+                ⚙️
+            </div>
             {props.renderFn(constructRenderData(), { onRemove: onRemove, onClick: onClick, isSelected: props.isSelected, passedProps: props })}
+            {showSettings && <RenderModal content={<RenderBoardSettings close={() => setShowSettings(!showSettings)} updateInterval={updateInterval} inputRef={updateIntervalRef} setUpdateInterval={stashUpdateInterval}/>} />}
         </React.Fragment>
     );
 }

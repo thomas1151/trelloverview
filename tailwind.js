@@ -1,6 +1,10 @@
 module.exports = {
   theme: {
-    extend: {}
+    extend: {
+      maxHeight:{
+        '10vh' : '10vh'
+      }
+    }
   },
   variants: {
     mx: ['responsive', 'first', 'hover', 'focus'],

@@ -6,6 +6,7 @@ body,
 }
 body {
   height: 100vh;
+  overscroll-behavior-y: none;
 }
 #root {
   height: 100%;
