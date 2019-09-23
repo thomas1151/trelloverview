@@ -9,7 +9,10 @@ const renderOverview = (props, { onClick = () => (console.log("Default click")),
             <div className="flex outer boardCard w-full flex-1 mb-4 mx-1 self-stretch" key={pot.id} >
                 <div className={"text-left inner flex flex-col p-2 border-2  m-1 bg-white w-full  " + (isSelected ? 'border-orange-400 ' : ' border-gray-200 ')} onClick={onClick} >
                     <div className=" mx-4">
-                        <h2 className="font-bold text-lg w-full py-1">{pot.name}</h2>
+                        <div className=" w-full py-1 flex">
+                            <div className="font-bold text-lg">{pot.name}</div>
+                            {pot.cards && pot.cards.length > 0 && props.isLoading && <div className="inline-block border border-blue-700 rounded px-3 ml-2">Updating</div>}
+                        </div >
                         <div className="font-book text-blue-700 pb-4 text-sm">
                             {pot.lists && pot.lists.map((list) => {
                                 let board = getElementByProperty(props.selectedBoards, 'id', list.idBoard);
@@ -22,16 +25,23 @@ const renderOverview = (props, { onClick = () => (console.log("Default click")),
                         </div>
                     </div>
                     <div className="cardList overflow-auto w-full">
-                        {props.isLoading ?
-                            <Loading />
-                            :
-                            pot.cards &&
-                                pot.cards.length > 0 ?
-                                pot.cards.map((card) => (
-                                    <Card key={card.id} card={card} selectedBoards={props.selectedBoards} activePots={props.activePots} />
-                                )) :
-                                <h1>No cards in these lists.</h1>
+
+                        { 
+                            pot.cards && pot.cards.length > 0?
+                                    pot.cards.map((card) => (
+                                        <Card key={card.id} card={card} selectedBoards={props.selectedBoards} activePots={props.activePots} />
+                                    ))
+                                :
+                                props.isLoading ? 
+                                    <Loading/>
+                                    :
+                                    <div className="text-center">No cards to display.</div>
+                            
                         }
+
+
+
+
                     </div>
 
                 </div>

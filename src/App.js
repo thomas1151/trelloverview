@@ -34,6 +34,7 @@ function App() {
   
   const potsCleanup = () => {
     if (activePots){
+      console.log("Scrubbing those pots");
       let r = activePots.map(pot => {
         pot.lists = cleanUpByCompare(selectedBoards, pot.lists, 'id', 'idBoard');
         return pot;
@@ -130,7 +131,7 @@ function App() {
   /**
    * Uses the curried restart function to restart back to the add token screen. 
    */
-  const logOut = () => (restart('addTrelloDetails', true))
+  const logOut = () => (restart('addTrelloDetails'))
   /**
     </StageHandlingLogic>
   */
@@ -207,7 +208,6 @@ function App() {
             renderFn={renderOverview}
             ApiKey={key} ApiToken={token}
             selectedBoards = {selectedBoards}
-            activePots={activePots}
           />
           
         </React.Fragment>
