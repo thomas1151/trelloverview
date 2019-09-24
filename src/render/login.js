@@ -22,7 +22,7 @@ const RenderSettings = (props) => (
     </RenderModal>
 )
 const Login = (props) => {
-    const [showSettings, setShowSettings] = useState(false);
+    const [showSettings, setShowSettings] = useState(false7);
     const apiRef = useRef(null);
     return(
         <React.Fragment>
@@ -36,7 +36,7 @@ const Login = (props) => {
             }
             <div className="flex-1 overflow-auto max-w-xl self-center flex w-full">
 
-                <div className="bg-white flex-0 self-center p-8 pb-4 rounded w-full sm:1/3">
+                <div className="bg-white flex-0 self-center p-8 pb-4 rounded w-full max-h-full overflow-auto sm:1/3">
                     <div className="w-full font-bold text-left">
                         {props.fetchData.error && props.ApiToken &&
                             <div className="rounded px-2 mb-2 w-full bg-red-400 text-lg text-white font-medium">! Error, credentials incorrect - could not connect to Trello!</div>
