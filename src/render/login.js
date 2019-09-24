@@ -22,7 +22,7 @@ const RenderSettings = (props) => (
     </RenderModal>
 )
 const Login = (props) => {
-    const [showSettings, setShowSettings] = useState(false7);
+    const [showSettings, setShowSettings] = useState(false);
     const apiRef = useRef(null);
     return(
         <React.Fragment>
